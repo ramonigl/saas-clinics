@@ -2,22 +2,28 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 import { db } from "@/db";
+import * as schema from "@/db/schema";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
-    usePlural: true,
+    usePlural: true, // This is important for the auth library to work correctly (changed names to plural)
+    schema,
   }),
+  // This is important for the auth library to work correctly (changed names to plural)
   user: {
-    modelName: "users",
+    modelName: "usersTable",
   },
   session: {
-    modelName: "sessions",
+    modelName: "sessionTable",
   },
   account: {
-    modelName: "accounts",
+    modelName: "accountTable",
   },
   verification: {
-    modelName: "verifications",
-  }
+    modelName: "verificationTable",
+  },
+  emailAndPassword: {
+    enabled: true,
+  },
 });
