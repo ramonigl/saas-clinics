@@ -25,6 +25,7 @@ import {
 import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
+import nameFormatter from "@/util/formatter";
 
 const registerSchema = z.object({
   name: z
@@ -54,7 +55,7 @@ const SignUpForm = () => {
       {
         email: values.email,
         password: values.password,
-        name: values.name,
+        name: nameFormatter(values.name),
       },
       {
         onSuccess: () => {
@@ -80,7 +81,7 @@ const SignUpForm = () => {
             <CardTitle>Crie sua conta</CardTitle>
             <CardDescription>Faça seu cadastro para continuar.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-8">
+          <CardContent className="space-y-6">
             <FormField
               control={form.control}
               name="name"

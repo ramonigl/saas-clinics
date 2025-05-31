@@ -70,7 +70,7 @@ const LoginForm = () => {
             <CardTitle>Login</CardTitle>
             <CardDescription>Faça seu login para continuar.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-8">
+          <CardContent className="space-y-6">
             <FormField
               control={form.control}
               name="email"
