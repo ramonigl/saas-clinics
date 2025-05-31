@@ -67,6 +67,11 @@ export const userToClinicTable = pgTable("user_to_clinic", {
   clinicId: uuid("clinic_id")
     .notNull()
     .references(() => clinicsTable.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
 });
 
 export const userToClinicTableRelations = relations(
@@ -86,10 +91,6 @@ export const userToClinicTableRelations = relations(
 export const clinicsTable = pgTable("clinics", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: text("name").notNull(),
-  cnpj: text("cnpj").notNull().unique(),
-  address: text("address").notNull(),
-  phone: text("phone").notNull(),
-  email: text("email").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
