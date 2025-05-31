@@ -59,6 +59,9 @@ const SignUpForm = () => {
         onSuccess: () => {
           router.push("/dashboard");
         },
+        onError: (error) => {
+          console.log(error);
+        },
       },
     );
   }
