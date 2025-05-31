@@ -32,10 +32,7 @@ const loginSchema = z.object({
     .trim()
     .min(1, { message: "E-mail é obrigatório" })
     .email({ message: "E-mail inválido" }),
-  password: z
-    .string()
-    .trim()
-    .min(8, { message: "A senha deve ter no mínimo 8 caracteres" }),
+  password: z.string().trim(),
 });
 
 const LoginForm = () => {
